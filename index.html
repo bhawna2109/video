@@ -22,16 +22,19 @@
 		}
 
 		button.play{
-		background-image: url("images/play.jpg");
-		background-repeat: no-repeat;
-		background-position: left;
-		padding-left: 40px;
+			background: url("images/play.jpg");
+			background-size: 20px 20px;
+			background-repeat: no-repeat;
+			background-position: left;
+			padding: 20px;
 		}
+
 		button.pause{
-		background-image: url("images/pause.jpg");
-		background-repeat: no-repeat;
-		background-position: left;
-		padding-left: 40px;
+			background: url("images/pause.jpg");
+			background-size:20px 20px ;
+			background-repeat: no-repeat;
+			background-position: left;
+			padding: 20px;
 		}
 
 		/*You can not change anything in the style tag other than to add images for the buttons. */
@@ -72,10 +75,12 @@
 		// You may only change code in the script tag.
 		// You can not change the HTML in the file.
 		var vid = document.querySelector("#myVideo");
+		var vol = document.querySelector("#volume")
 
 	function playVid() { 
 		console.log("Play Video");
 		vid.play();
+		vol.innerHTML = document.getElementById("volumeSlider").value +"%";
 		// Play the video and update the volume.
 	} 
 
@@ -87,12 +92,15 @@
 
 	function slowSpeed() {
 		// Slow the vido speed by half and log the new rate to the console.
-		vid.playbackRate = 0.5;
+		vid.playbackRate = vid.playbackRate * 0.5;
+		console.log("Playback rate is" + vid.playbackRate);
 
 	} 
 
 	function increaseSpeed() {
-		// Double the video speen and log the new rate to the console. 
+		// Double the video speen and log the new rate to the console.
+		vid.playbackRate = vid.playbackRate * 2;
+		console.log("Playback rate is" + vid.playbackRate);
 	} 
 
 	function mute() { 
@@ -104,6 +112,17 @@
 	 	//		log "mute" to the console
 		// 		mute the video
 		// 		change the button text to "unmute"
+
+		if(vid.muted) {
+			console.log("unmute")
+			vid.muted = false;
+			document.getElementById("mute").innerHTML = "mute";
+		}
+		else {
+			console.log("mute");
+			vid.muted = true;
+			document.getElementById("mute").innerHTML = "unmute";
+		}
 	}
 
 	volumeSlider.oninput = function() {
@@ -113,6 +132,10 @@
 		// Make sure to update the volume element.
 
 		// Update the console log with the new volume as well.
+		var val = document.getElementById('volumeSlider').value;
+		console.log(val);
+		vol.innerHTML = val+'%';
+
 	}
 	       
 
@@ -133,9 +156,12 @@
 	// Not sure if we can test for this??? 
 	function random(){
 		var rand = Math.random(0,100);
+		rand = rand*100 + "deg";
+		console.log(" Grayscale and skewX are " + rand);
 		// Use setProperty to change the grayscale filder and transform properties of the video.
-		vid.style.transform = skewX(90);	
+		vid.style.setProperty ('transform' , 'skewX(rand)');
 		// Log what the new values are to the console.
+		
 
 	}
 
