@@ -80,7 +80,7 @@
 	function playVid() { 
 		console.log("Play Video");
 		vid.play();
-		vol.innerHTML = document.getElementById("volumeSlider").value +"%";
+		vol.innerHTML = document.getElementById("volumeSlider").value + "%";
 		// Play the video and update the volume.
 	} 
 
@@ -93,14 +93,14 @@
 	function slowSpeed() {
 		// Slow the vido speed by half and log the new rate to the console.
 		vid.playbackRate = vid.playbackRate * 0.5;
-		console.log("Playback rate is" + vid.playbackRate);
+		console.log("Playback rate is " + vid.playbackRate);
 
 	} 
 
 	function increaseSpeed() {
 		// Double the video speen and log the new rate to the console.
 		vid.playbackRate = vid.playbackRate * 2;
-		console.log("Playback rate is" + vid.playbackRate);
+		console.log("Playback rate is " + vid.playbackRate);
 	} 
 
 	function mute() { 
@@ -133,8 +133,9 @@
 
 		// Update the console log with the new volume as well.
 		var val = document.getElementById('volumeSlider').value;
-		console.log(val);
+		console.log("Volume is " + val);
 		vol.innerHTML = val+'%';
+		vid.volume = val/100;
 
 	}
 	       
@@ -156,11 +157,12 @@
 	// Not sure if we can test for this??? 
 	function random(){
 		var rand = Math.random(0,100);
-		rand = rand*100 + "deg";
-		console.log(" Grayscale and skewX are " + rand);
+		rand = rand*100;
 		// Use setProperty to change the grayscale filder and transform properties of the video.
-		vid.style.setProperty ('transform' , 'skewX(rand)');
+		vid.style.setProperty ('transform' , "skewX(" + rand + "deg)");
+		vid.style.setProperty ('filter', "grayscale(" + rand + "%)");
 		// Log what the new values are to the console.
+		console.log(" Grayscale and skewX are " + rand + " deg");
 		
 
 	}
